@@ -13,8 +13,6 @@ app.use(express.static(`${__dirname}`))
 
 app.post('/proxy/', function (client_req, client_res) {
 
-  
-
   var client = client_req.body;
 
   const postData = querystring.stringify(client.data);
@@ -41,30 +39,6 @@ app.post('/proxy/', function (client_req, client_res) {
     });
 
     res.on('end', () => {
-      if (IsJsonString(data)) {
-        client_res.send({
-          data: JSON.parse(data)
-        })
-      } else {
-        client_res.send({
-          data: {
-            paths: {
-              "/to/on/khujy/": {
-                put: {
-                  description: "Эндпоинт успешного получения данных.",
-                  responses: {
-                    "200": {
-                      "data": "ХУЙ!"
-                    }
-                  }
-                },
-                parameters: []
-              }
-            }
-          }
-        })
-      }
-      
     })
   });
 
